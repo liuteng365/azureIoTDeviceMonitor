@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p class="lead">Device information monitor</p>
+<table style="width:100%;">
+    <th>DeviceName</th>
+    <th>DeviceKey</th>
+    <!--<th>ConnectionStatus</th>-->
+    <th>LastActiveTime</th>
+    <th>DeviceStatus</th>
+    <th>C2DMessageCount</th>
+    <th>Platform</th>
+    <th>Push</th>
+    @for (int i = 0; i < Convert.ToInt32(ViewData["length"]); i++)
+    {
+
+        <tr><td>@ViewData["DeviceId" + i.ToString()]</td>
+            <td>@ViewData["DeviceKey" + i.ToString()]</td>
+            <!--<td>@ViewData["ConnectionStatus" + i.ToString()]</td> -->
+            <td>@ViewData["DeviceHistory" + i.ToString()]</td>
+            <td>@ViewData["DeviceStatus" + i.ToString()]</td>
+            <td>@ViewData["C2DCount" + i.ToString()]</td>
+            <td>@ViewData["Platform" + i.ToString()]</td>           
+            <td>
+                <input type="button" value="PushButton" onclick="location.href='@Url.Action("PushButton", "Devicemonitor", new { deviceKey = ViewData["DeviceId" + i.ToString()] })'" />           
+            </td>
+        </tr>
+    }
+</table>
